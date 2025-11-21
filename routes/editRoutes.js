@@ -1,42 +1,19 @@
 const express = require("express");
 const router = express.Router();
-const Task = require("../models/task.model");   // Import model
-
-
-
-router.patch("/:id", async (req, res) => {
-    try {
-        const { name, description } = req.body;
-
-        const updatedTask = await Task.findOneAndUpdate(
-            { id: req.params.id },
-            { name, description },
-        );
-
-        if (!updatedTask) {
-            return res.status(404).json({ message: "Task not found" });
-        }
-
-        res.status(200).json({
-            message: "Task updated successfully",
-            task: updatedTask
-        });
-
-    } catch (error) {
-        res.status(500).json({ error: "Failed to update task" });
-    }
-});
+const Task = require("../data/tasks");
 
 
 // MARK TASK AS COMPLETED
-router.patch("/:id/complete", async (req, res) => {
+router.patch("/:id", async (req, res) => {
     try {
-        const updatedTask = await Task.findOneAndUpdate(
-            { id: req.params.id },
-            { isCompleted: true },
+        const { isCompleted } = req.body;
+        console.log("Updating task with ID:", req.params.id, "to isCompleted:", isCompleted);
+        const updatedTask = await Task.updateOne(
+            { _id: req.params.id },
+            { $set: { isCompleted: isCompleted } }
         );
 
-        if (!updatedTask) {
+        if (updatedTask.matchedCount === 0) {
             return res.status(404).json({ message: "Task not found" });
         }
 
@@ -49,3 +26,5 @@ router.patch("/:id/complete", async (req, res) => {
         res.status(500).json({ error: "Failed to complete task" });
     }
 });
+
+module.exports = router;

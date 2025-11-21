@@ -3,12 +3,13 @@ const router = express.Router();
 const Task = require("../data/tasks");   // Import model
 
 
-router.put("/", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
-        const { name, description, isCompleted } = req.body;
+        console.log("req.body:", req.body);
+        const { title, description, isCompleted } = req.body;
 
         // Check if task exists
-        const existingTask = await Task.findOne({ name: name });
+        const existingTask = await Task.findOne({ title: title });
 
         if (existingTask) {
             return res.status(400).json({ message: "Task already exists with this ID" });
@@ -16,7 +17,7 @@ router.put("/", async (req, res) => {
 
         // Create new task
         const newTask = await Task.create({
-            name,
+            title,
             description,
             isCompleted: false
         });
@@ -30,3 +31,5 @@ router.put("/", async (req, res) => {
         res.status(500).json({ error: "Failed to create task" });
     }
 });
+
+module.exports = router;
