@@ -1,0 +1,105 @@
+# =========================
+# GENERAL
+# =========================
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+logs/
+*.pid
+*.seed
+*.pid.lock
+
+# =========================
+# ENVIRONMENT FILES
+# =========================
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+
+# =========================
+# BUILD OUTPUT
+# =========================
+dist/
+build/
+.public/
+.cache/
+coverage/
+
+# =========================
+# REACT FRONTEND (CRA/Vite)
+# =========================
+# React build
+frontend/node_modules/
+frontend/build/
+frontend/dist/
+frontend/.vite/
+
+# If using CRA:
+frontend/.eslintcache
+
+# =========================
+# NODE BACKEND
+# =========================
+backend/node_modules/
+backend/dist/
+backend/logs/
+backend/uploads/
+
+# =========================
+# MONGODB & DATABASE
+# =========================
+dump/
+data/
+*.db
+*.sqlite
+
+# =========================
+# OPERATING SYSTEM
+# =========================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# =========================
+# IDE / EDITOR
+# =========================
+
+# VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# JetBrains
+.idea/
+*.iml
+out/
+
+# =========================
+# OPTIONAL (If using Docker)
+# =========================
+docker-data/
+docker-compose.override.yml
+
+# =========================
+# OPTIONAL (If using Firebase, AWS, or cloud configs)
+# =========================
+*.pem
+*.key
+serviceAccountKey.json
